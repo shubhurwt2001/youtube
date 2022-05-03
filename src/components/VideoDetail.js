@@ -10,7 +10,7 @@ const VideoDetail = ({ video }) => {
   } else {
     var src = `https://youtube.com/embed/${video.id.videoId}`;
     return (
-      <div className="row mt-4">
+      <div className="row mt-2">
         <div className="col-md-8">
           <div className="card">
             <div className="card-body">

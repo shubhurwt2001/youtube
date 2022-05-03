@@ -15,22 +15,26 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="col-md-12 mt-3">
-        <div className="card search">
-          <div className="card-body">
-            <form onSubmit={this.onFormSubmit}>
-              <div className="form-group">
-                <label htmlFor="search">Search Video</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="search"
-                  value={this.state.term}
-                  onChange={this.onInputChange}
-                />
-              </div>
-            </form>
+        <form onSubmit={this.onFormSubmit}>
+          <div className="d-flex justify-content-between outer-search">
+            <h2>
+              <span>S</span>TUBE
+            </h2>
+            <div className="form-group d-flex justify-content-end">
+              <input
+                type="text"
+                className="form-control"
+                id="search"
+                value={this.state.term}
+                onChange={this.onInputChange}
+                placeholder="search..."
+              />
+              <button className="searchBtn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     );
   }

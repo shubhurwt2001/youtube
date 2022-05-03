@@ -7,7 +7,7 @@ import VideoDetail from "./components/VideoDetail";
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
   componentDidMount() {
-    this.onTermSubmit("zayn");
+    this.onTermSubmit("Short animated movies");
   }
   onTermSubmit = (term) => {
     aixos
