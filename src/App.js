@@ -3,11 +3,12 @@ import SearchBar from "./SearchBar";
 import aixos from "axios";
 import VideoList from "./components/VideoList";
 import VideoDetail from "./components/VideoDetail";
+var randomWords = require('random-words');
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
   componentDidMount() {
-    this.onTermSubmit("Short animated movies");
+    this.onTermSubmit(randomWords());
   }
   onTermSubmit = (term) => {
     aixos
