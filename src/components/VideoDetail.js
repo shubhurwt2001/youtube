@@ -1,10 +1,16 @@
 import React from "react";
 
-const VideoDetail = ({ video }) => {
-  if (!video) {
+const VideoDetail = ({ video, error }) => {
+  if (!video & !error) {
     return (
       <div>
-        <h1>Loading....</h1>
+        <h1 className="text-white">Loading....</h1>
+      </div>
+    );
+  } else if (error) {
+    return (
+      <div>
+        <h1 className="text-white">{error}</h1>
       </div>
     );
   } else {

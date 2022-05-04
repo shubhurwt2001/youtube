@@ -3,10 +3,10 @@ import SearchBar from "./SearchBar";
 import aixos from "axios";
 import VideoList from "./components/VideoList";
 import VideoDetail from "./components/VideoDetail";
-var randomWords = require('random-words');
+var randomWords = require("random-words");
 
 class App extends React.Component {
-  state = { videos: [], selectedVideo: null };
+  state = { videos: [], selectedVideo: null, error: null };
   componentDidMount() {
     this.onTermSubmit(randomWords());
   }
@@ -16,7 +16,7 @@ class App extends React.Component {
         params: {
           part: "snippet",
           maxResults: 50,
-          key: "AIzaSyAjAYe4qjdEr59tLAn_kTtKcx6rzjiOQMc",
+          key: "AIzaSyCW6bubEjLHusvtA8fI-n-QRQDUFZahQPU",
           q: term,
         },
       })
@@ -24,6 +24,12 @@ class App extends React.Component {
         this.setState({
           videos: res.data.items,
           selectedVideo: res.data.items[0],
+          error: null,
+        });
+      })
+      .catch((err) => {
+        this.setState({
+          error: err.response.data.error.message,
         });
       });
   };
@@ -37,15 +43,18 @@ class App extends React.Component {
         <div className="row">
           <SearchBar onFormSubmit={this.onTermSubmit} />
           <div className="col-md-12">
-            <VideoDetail video={this.state.selectedVideo} />
+            <VideoDetail
+              video={this.state.selectedVideo}
+              error={this.state.error}
+            />
           </div>
           <div className="col-md-12">
             <div className="row">
               <div className="row-inline col-12">
-              <VideoList
-                videos={this.state.videos}
-                onVideoSelect={this.onVideoSelect}
-              />
+                <VideoList
+                  videos={this.state.videos}
+                  onVideoSelect={this.onVideoSelect}
+                />
               </div>
             </div>
           </div>
